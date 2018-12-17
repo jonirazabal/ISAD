@@ -223,7 +223,6 @@ public final class TdClient implements Runnable {
     		return text;
 	    }
 	    public String getChat(String id) {
-	    	System.out.println(id);
 	    	String text = null;
 	    	TdApi.Chat chat= chats.get(Long.parseLong(id));
             TdApi.Message lastMessage = chat.lastMessage;

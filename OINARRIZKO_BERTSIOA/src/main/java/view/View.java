@@ -88,11 +88,9 @@ public class View implements ObserverTrait, ActionListener {
 	}
 	public void gehituDer(String title) {
 		try {
-			System.out.println("Mezua: "+title);
 			document.insertString(0, title + "\n", null);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Ops");
 		}
 		
 	}
@@ -112,7 +110,7 @@ public class View implements ObserverTrait, ActionListener {
 	        	
 	            try {
 					document.remove(0, document.getLength());
-					//pictures.clear();
+					pictures.clear();
 				} catch (BadLocationException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -207,7 +205,6 @@ public class View implements ObserverTrait, ActionListener {
 			String path = ((ViewEvent.NewPhoto) arg).path;
 			int id = ((ViewEvent.NewPhoto) arg).id;
 			gehituArgazkia(id, path);
-			//
 		}
 		else if (arg instanceof ViewEvent.NewChat) {
 			long idLong = ((ViewEvent.NewChat) arg).id;
@@ -228,7 +225,8 @@ public class View implements ObserverTrait, ActionListener {
 		JLabel label;
 		path = path.split("/tdlib")[1];
 		System.out.println(path);
-		Icon icon = new ImageIcon(getClass().getResource(path));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/tdlib"+path));
+		System.out.println(pictures.get(id));
 		if(pictures.get(id)==null) {
 			System.out.println("Ez dago pictures-en");
 			label = new JLabel(icon);
@@ -237,6 +235,7 @@ public class View implements ObserverTrait, ActionListener {
 		else {
 			System.out.println("pictures-en dago");
 			label = pictures.get(id);
+			label.setIcon(icon);
 		}
 		StyleConstants.setComponent(labelStyle, label);
 		try {
@@ -253,7 +252,6 @@ public class View implements ObserverTrait, ActionListener {
 		// TODO Auto-generated method stub
 		switch (e.getActionCommand()) {
 			case "ok":
-				System.out.println("OK Button");
 				mControl.getChatList();
 		}
 		

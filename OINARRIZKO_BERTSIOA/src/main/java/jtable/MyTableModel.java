@@ -31,7 +31,6 @@ public class MyTableModel extends AbstractTableModel {
 		ZonedDateTime d = ZonedDateTime.ofInstant(date.toInstant(),
                 ZoneId.systemDefault());
 		String dateFrom = calendar(d);
-		System.out.println(dateFrom);
 		data.add(new Lag(txat,dateFrom, id));
 	}
 	public void tableClear() {
